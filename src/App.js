@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
 
 import populationService from './services/populations'
+import emissionsService from './services/emissions'
 import countriesService from './services/countries'
 
 import Title from './components/Title'
 import Search from './components/Search'
+import Result from './components/Result'
 
 class App extends Component {
 
@@ -12,31 +14,43 @@ class App extends Component {
         super(props)
         this.state = {
             countries: [],
-            populations: null
+            selected: {
+                id: '1W',
+                name:'World'
+            },
+            populations: null,
+            emissions: null
         }
     }
 
     async componentDidMount() {
         const countries = await countriesService.getAll()
-        this.setState({countries})
-        console.log(this.state.countries)
+        const populations = await populationService.getByISO(this.state.selected.id)
+        const emissions = await emissionsService.getByISO(this.state.selected.id)
+        this.setState({ countries, populations, emissions })
+        console.log(this.state)
     }
 
     handleCountryChange = async (event) => {
-        const country = event.target.value
-        const populations = await populationService.getByISO(country)
+        const id = event.target.value
+        const selected = this.state.countries.find(c => c.id === id)
+        const populations = await populationService.getByISO(id)
+        const emissions = await emissionsService.getByISO(id)
         this.setState({
-            populations
+            selected,
+            populations,
+            emissions
         })
         console.log(this.state)
     }
 
     render() {
-        
+
         return (
             <div>
-                <Title title={'CO2 Emissions'}/>
-                <Search countries={this.state.countries} setSelected={this.handleCountryChange}/>
+                <Title title={'CO2 Emissions'} />
+                <Search countries={this.state.countries} setSelected={this.handleCountryChange} selected={this.state.selected.id} />
+                <Result populations={this.state.populations} emissions={this.state.emissions} country={this.state.selected}/>
             </div>
         )
     }

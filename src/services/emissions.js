@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const getByISO = (ISO) => {
-    const url = `https://api.worldbank.org/v2/countries/${ISO}/indicators/SP.POP.TOTL?per_page=100&format=json`
+    const url = `https://api.worldbank.org/v2/countries/${ISO}/indicators/EN.ATM.CO2E.KT?per_page=100&format=json`
     return fetchData(url)
 }
 
@@ -15,7 +15,7 @@ const format = (data) => {
     const formated = data[1].map(x => {
         return ({
             "year": x.date,
-            "population": x.value
+            "emission": x.value
         })
     })
 
