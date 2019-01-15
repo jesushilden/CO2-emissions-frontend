@@ -19,9 +19,7 @@ const format = (data) => {
         })
     })
 
-    formated.sort((a, b) => (a.year > b.year) ? 1 : -1)
-
-    return formated
+    return formated.reverse()
 }
 
 export default { getByISO }

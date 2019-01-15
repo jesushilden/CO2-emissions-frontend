@@ -19,7 +19,8 @@ class App extends Component {
                 name:'World'
             },
             populations: null,
-            emissions: null
+            emissions: null,
+            perCapita: false
         }
     }
 
@@ -44,13 +45,20 @@ class App extends Component {
         console.log(this.state)
     }
 
+    handlePerCapitaChange = (event) => {
+        console.log(event.target.checked)
+        this.setState({
+            perCapita: event.target.checked
+        })
+    }
+
     render() {
 
         return (
             <div>
                 <Title title={'CO2 Emissions'} />
                 <Search countries={this.state.countries} setSelected={this.handleCountryChange} selected={this.state.selected.id} />
-                <Result populations={this.state.populations} emissions={this.state.emissions} country={this.state.selected}/>
+                <Result populations={this.state.populations} emissions={this.state.emissions} country={this.state.selected} perCapita={this.state.perCapita} togglePerCapita={this.handlePerCapitaChange}/>
             </div>
         )
     }

@@ -19,7 +19,7 @@ const format = (data) => {
         })
     })
 
-    return formated
+    return formated.reverse()
 }
 
 export default { getByISO }

@@ -12,10 +12,7 @@ const Search = ({ countries, setSelected, selected }) => {
                     </option>
                 )}
             </select>
-            <div>
-                <input type='checkbox' name='per_capita' />
-                <label>Per Capita</label>
-            </div>
+
         </div>
     )
 }
