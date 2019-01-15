@@ -15,7 +15,7 @@ const format = (data) => {
     const formated = data[1].map(x => {
         return ({
             "year": x.date,
-            "population": x.value
+            "value": x.value
         })
     })
 

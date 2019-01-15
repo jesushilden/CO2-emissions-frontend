@@ -15,9 +15,11 @@ const format = (data) => {
     const formated = data[1].map(x => {
         return ({
             "year": x.date,
-            "emission": x.value
+            "value": x.value
         })
     })
+
+    formated.sort((a, b) => (a.year > b.year) ? 1 : -1)
 
     return formated
 }
