@@ -1,0 +1,16 @@
+.notification {
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.danger {
+    background: rgba(219, 43, 0, 0.2);
+    border: 2px solid rgba(219, 43, 0, 1);
+    color: rgba(219, 43, 0, 1);
+}
+
+.success {
+    background: rgba(92, 184, 92, 0.2);
+    border: 2px solid rgba(92, 184, 92, 1);
+    color: rgba(92, 184, 92, 1);
+}

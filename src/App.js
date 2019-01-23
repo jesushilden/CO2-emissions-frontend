@@ -4,6 +4,7 @@ import populationService from './services/populations'
 import emissionsService from './services/emissions'
 import countriesService from './services/countries'
 
+import Notification from './components/Notification'
 import Header from './components/Header'
 import Search from './components/Search'
 import Result from './components/Result'
@@ -25,7 +26,8 @@ class App extends Component {
             rangeLimits: null,
             populations: null,
             emissions: null,
-            perCapita: false
+            perCapita: false,
+            notification: null
         }
     }
 
@@ -54,7 +56,7 @@ class App extends Component {
             })
             console.log(this.state)
         } else {
-
+            this.notify('No data was found for ' + selected.label, 'danger')
         }
     }
 
@@ -70,10 +72,25 @@ class App extends Component {
         })
     }
 
+    notify = (message, messageClass) => {
+        this.setState({
+            notification: {
+                message,
+                messageClass
+            }
+        })
+        setTimeout(() => {
+            this.setState({
+                notification: null
+            })
+        }, 3000)
+    }
+
     render() {
 
         return (
             <div className='container'>
+                <Notification notification={this.state.notification} />
                 <Header title={'CO2 Emissions'} subtitle={'Search by area and compare by capita'} />
                 <Search countries={this.state.countries} setSelected={this.handleSelectedChange} selected={this.state.selected} />
                 <ResultOptions togglePerCapita={this.handlePerCapitaChange} rangeValue={this.state.rangeValue} setRange={this.handleRangeChange} rangeLimits={this.state.rangeLimits} />
