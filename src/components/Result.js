@@ -5,7 +5,7 @@ const Result = ({ populations, emissions, selected, perCapita, rangeValue }) => 
     if (populations === null || emissions === null || selected === null || rangeValue === null) {
         return (
             <div>
-                No data could be found for {selected.name}
+                No data could be found for {selected.label}
             </div>
         )
     } else {

@@ -13,12 +13,12 @@ const fetchData = async (url) => {
 const format = (data) => {
     const formated = data[1].map(x => {
         return ({
-            "id": x.iso2Code,
-            "name": x.name
+            "value": x.iso2Code,
+            "label": x.name
         })
     })
 
-    formated.sort((a, b) => (a.name > b.name) ? 1 : -1)
+    formated.sort((a, b) => (a.label > b.label) ? 1 : -1)
     return formated
 }
 

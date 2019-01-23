@@ -4,7 +4,7 @@ import populationService from './services/populations'
 import emissionsService from './services/emissions'
 import countriesService from './services/countries'
 
-import Title from './components/Title'
+import Header from './components/Header'
 import Search from './components/Search'
 import Result from './components/Result'
 import ResultOptions from './components/ResultOptions'
@@ -18,8 +18,8 @@ class App extends Component {
         this.state = {
             countries: [],
             selected: {
-                id: '1W',
-                name: 'World'
+                value: '1W',
+                label: 'World'
             },
             rangeValue: null,
             rangeLimits: null,
@@ -31,8 +31,8 @@ class App extends Component {
 
     async componentDidMount() {
         const countries = await countriesService.getAll()
-        const populations = await populationService.getByISO(this.state.selected.id)
-        const emissions = await emissionsService.getByISO(this.state.selected.id)
+        const populations = await populationService.getByISO(this.state.selected.value)
+        const emissions = await emissionsService.getByISO(this.state.selected.value)
         const rangeValue = {
             min: Number(emissions[0].year),
             max: Number(emissions[emissions.length - 1].year)
@@ -42,17 +42,20 @@ class App extends Component {
         console.log(this.state)
     }
 
-    handleSelectedChange = async (event) => {
-        const id = event.target.value
-        const selected = this.state.countries.find(c => c.id === id)
-        const populations = await populationService.getByISO(id)
-        const emissions = await emissionsService.getByISO(id)
-        this.setState({
-            selected,
-            populations,
-            emissions
-        })
-        console.log(this.state)
+    handleSelectedChange = async (selected) => {
+        const populations = await populationService.getByISO(selected.value)
+        const emissions = await emissionsService.getByISO(selected.value)
+
+        if (populations !== null && emissions !== null) {
+            this.setState({
+                selected,
+                populations,
+                emissions
+            })
+            console.log(this.state)
+        } else {
+
+        }
     }
 
     handleRangeChange = (value) => {
@@ -71,8 +74,8 @@ class App extends Component {
 
         return (
             <div className='container'>
-                <Title title={'CO2 Emissions'} />
-                <Search countries={this.state.countries} setSelected={this.handleSelectedChange} selected={this.state.selected.id} />
+                <Header title={'CO2 Emissions'} subtitle={'Search by area and compare by capita'} />
+                <Search countries={this.state.countries} setSelected={this.handleSelectedChange} selected={this.state.selected} />
                 <ResultOptions togglePerCapita={this.handlePerCapitaChange} rangeValue={this.state.rangeValue} setRange={this.handleRangeChange} rangeLimits={this.state.rangeLimits} />
                 <Result populations={this.state.populations} emissions={this.state.emissions} selected={this.state.selected} perCapita={this.state.perCapita} rangeValue={this.state.rangeValue} />
             </div>
