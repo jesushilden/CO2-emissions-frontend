@@ -1,3 +1,11 @@
+.resultOptions {
+    margin-bottom: 30px;
+}
+
+.perCapita {
+    margin-bottom: 30px;
+}
+
 .input-range__slider {
     appearance: none;
     background: rgb(219, 43, 0);

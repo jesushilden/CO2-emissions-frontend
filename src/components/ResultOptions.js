@@ -9,8 +9,8 @@ const ResultOptions = ({ togglePerCapita, rangeValue, setRange, rangeLimits }) =
     }
 
     return (
-        <div>
-            <div>
+        <div className='resultOptions'>
+            <div className='perCapita'>
                 <input type='checkbox' name='perCapita' onChange={togglePerCapita} />
                 <label>Per Capita</label>
             </div>
