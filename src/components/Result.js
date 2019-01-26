@@ -20,9 +20,12 @@ const Result = ({ populations, emissions, selected, perCapita, rangeValue }) => 
             :
             filteredEmissions.map(emission => emission.value)
 
+        const weightUnit = perCapita ? 'kg' : 'kt'
+
         const chartData = {
             labels: labels,
             datasets: [{
+                label: weightUnit,
                 fill: false,
                 backgroundColor: 'rgba(219, 43, 0, 0.5)',
                 borderColor: 'rgba(219, 43, 0, 1)',
@@ -34,11 +37,12 @@ const Result = ({ populations, emissions, selected, perCapita, rangeValue }) => 
             }]
         }
 
-        const weightUnit = perCapita ? 'kg' : 'kt'
-
         const options = {
             legend: {
                 display: false
+            },
+            tooltips: {
+                displayColors: false
             },
             scales: {
                 yAxes: [{
