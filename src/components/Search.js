@@ -8,7 +8,18 @@ const Search = ({ countries, setSelected, selected }) => {
 
     return (
         <div className='search'>
-            <Select value={selected} onChange={setSelected} options={countries} />
+            <Select
+                value={selected}
+                onChange={setSelected}
+                options={countries}
+                theme={(theme) => ({
+                    ...theme,
+                    colors: {
+                        ...theme.colors,
+                        primary25: '#eeeeee',
+                        primary: '#555555',
+                    },
+                })} />
         </div>
     )
 }

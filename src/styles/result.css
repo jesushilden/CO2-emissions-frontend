@@ -1,0 +1,15 @@
+.chartContainer {
+    height: 300px;
+}
+
+@media(min-width: 700px) {
+    .chartContainer {
+        height: 400px;
+    }
+}
+
+@media(min-width: 1000px) {
+    .chartContainer {
+        height: 500px;
+    }
+}

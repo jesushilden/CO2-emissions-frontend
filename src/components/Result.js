@@ -1,6 +1,8 @@
 import React from 'react'
 import { Line } from 'react-chartjs-2'
 
+import '../styles/result.css'
+
 const Result = ({ populations, emissions, selected, perCapita, rangeValue }) => {
     if (populations === null || emissions === null || selected === null || rangeValue === null) {
         return (
@@ -51,11 +53,13 @@ const Result = ({ populations, emissions, selected, perCapita, rangeValue }) => 
                         labelString: 'Year'
                     }
                 }]
-            }
+            },
+            responsive: true,
+            maintainAspectRatio: false
         }
 
         return (
-            <div>
+            <div className='chartContainer'>
                 <Line data={chartData} options={options} />
             </div>
         )

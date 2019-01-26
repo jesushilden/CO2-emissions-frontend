@@ -66,9 +66,9 @@ class App extends Component {
         })
     }
 
-    handlePerCapitaChange = (event) => {
+    handlePerCapitaChange = (checked) => {
         this.setState({
-            perCapita: event.target.checked
+            perCapita: checked
         })
     }
 
@@ -93,7 +93,7 @@ class App extends Component {
                 <Notification notification={this.state.notification} />
                 <Header title={'CO2 Emissions'} subtitle={'Search by area and compare by capita'} />
                 <Search countries={this.state.countries} setSelected={this.handleSelectedChange} selected={this.state.selected} />
-                <ResultOptions togglePerCapita={this.handlePerCapitaChange} rangeValue={this.state.rangeValue} setRange={this.handleRangeChange} rangeLimits={this.state.rangeLimits} />
+                <ResultOptions perCapita={this.state.perCapita} togglePerCapita={this.handlePerCapitaChange} rangeValue={this.state.rangeValue} setRange={this.handleRangeChange} rangeLimits={this.state.rangeLimits} />
                 <Result populations={this.state.populations} emissions={this.state.emissions} selected={this.state.selected} perCapita={this.state.perCapita} rangeValue={this.state.rangeValue} />
             </div>
         )

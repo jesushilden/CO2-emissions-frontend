@@ -1,8 +1,10 @@
 import React from 'react'
 import InputRange from 'react-input-range'
+import Switch from 'react-switch'
+
 import '../styles/resultOptions.css'
 
-const ResultOptions = ({ togglePerCapita, rangeValue, setRange, rangeLimits }) => {
+const ResultOptions = ({ perCapita, togglePerCapita, rangeValue, setRange, rangeLimits }) => {
 
     if (togglePerCapita === null || rangeValue === null || rangeLimits === null) {
         return null
@@ -11,9 +13,10 @@ const ResultOptions = ({ togglePerCapita, rangeValue, setRange, rangeLimits }) =
     return (
         <div className='resultOptions'>
             <div className='perCapita'>
-                <input type='checkbox' name='perCapita' onChange={togglePerCapita} />
+                <Switch onChange={togglePerCapita} checked={perCapita} />
                 <label>Per Capita</label>
             </div>
+
             <InputRange
                 maxValue={rangeLimits.max}
                 minValue={rangeLimits.min}
