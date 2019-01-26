@@ -27,7 +27,8 @@ class App extends Component {
             populations: null,
             emissions: null,
             perCapita: false,
-            notification: null
+            notification: null,
+            loading: false
         }
     }
 
@@ -41,10 +42,10 @@ class App extends Component {
         }
         const rangeLimits = rangeValue
         this.setState({ countries, populations, emissions, rangeValue, rangeLimits })
-        console.log(this.state)
     }
 
     handleSelectedChange = async (selected) => {
+        this.setState({loading: true})
         const populations = await populationService.getByISO(selected.value)
         const emissions = await emissionsService.getByISO(selected.value)
 
@@ -54,10 +55,10 @@ class App extends Component {
                 populations,
                 emissions
             })
-            console.log(this.state)
         } else {
             this.notify('No data was found for ' + selected.label, 'danger')
         }
+        this.setState({loading: false})
     }
 
     handleRangeChange = (value) => {
@@ -94,7 +95,7 @@ class App extends Component {
                 <Header title={'CO2 Emissions'} subtitle={'Search by area and compare by capita'} />
                 <Search countries={this.state.countries} setSelected={this.handleSelectedChange} selected={this.state.selected} />
                 <ResultOptions perCapita={this.state.perCapita} togglePerCapita={this.handlePerCapitaChange} rangeValue={this.state.rangeValue} setRange={this.handleRangeChange} rangeLimits={this.state.rangeLimits} />
-                <Result populations={this.state.populations} emissions={this.state.emissions} selected={this.state.selected} perCapita={this.state.perCapita} rangeValue={this.state.rangeValue} />
+                <Result populations={this.state.populations} emissions={this.state.emissions} selected={this.state.selected} perCapita={this.state.perCapita} rangeValue={this.state.rangeValue} loading={this.state.loading}/>
             </div>
         )
     }

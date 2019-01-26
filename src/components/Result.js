@@ -1,13 +1,19 @@
 import React from 'react'
 import { Line } from 'react-chartjs-2'
+import { RingLoader, ClipLoader } from 'react-spinners'
+
 
 import '../styles/result.css'
 
-const Result = ({ populations, emissions, selected, perCapita, rangeValue }) => {
+const Result = ({ populations, emissions, selected, perCapita, rangeValue, loading }) => {
     if (populations === null || emissions === null || selected === null || rangeValue === null) {
         return (
-            <div>
-                No data could be found for {selected.label}
+            <div className='result'>
+                <RingLoader
+                    sizeUnit={'px'}
+                    size={50}
+                    color={'#db2b00'}
+                />
             </div>
         )
     } else {
@@ -31,7 +37,7 @@ const Result = ({ populations, emissions, selected, perCapita, rangeValue }) => 
                 borderColor: 'rgba(219, 43, 0, 1)',
                 pointBorderColor: 'rgba(219, 43, 0, 1)',
                 pointBackgroundColor: 'rgb(255, 255, 255)',
-                pointRadius: 1,
+                pointRadius: 2,
                 pointHitRadius: 6,
                 data: data,
             }]
@@ -64,6 +70,12 @@ const Result = ({ populations, emissions, selected, perCapita, rangeValue }) => 
 
         return (
             <div className='chartContainer'>
+                <ClipLoader
+                    sizeUnit={'px'}
+                    size={30}
+                    color={'#db2b00'}
+                    loading={loading}
+                />
                 <Line data={chartData} options={options} />
             </div>
         )

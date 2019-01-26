@@ -1,5 +1,21 @@
+.result {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.css-12hjs9q-wrapper, .css-11mabox-style {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
+
 .chartContainer {
     height: 300px;
+    position: relative;
 }
 
 @media(min-width: 700px) {
