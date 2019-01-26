@@ -69,7 +69,7 @@ const Result = ({ populations, emissions, selected, perCapita, rangeValue, loadi
         }
 
         return (
-            <div className='chartContainer'>
+            <div className='result'>
                 <ClipLoader
                     sizeUnit={'px'}
                     size={30}
