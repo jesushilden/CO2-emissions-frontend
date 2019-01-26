@@ -1,12 +1,18 @@
 .notification {
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    top: 0;
+    left: 0;
+    right: 0;
     padding: 10px;
     border-radius: 5px;
 }
 
 .danger {
-    background: rgba(219, 43, 0, 0.2);
-    border: 2px solid rgba(219, 43, 0, 1);
-    color: rgba(219, 43, 0, 1);
+    background: #ffd2c7;
+    border: 2px solid #db2b00;
+    color: #db2b00;
 }
 
 .success {
